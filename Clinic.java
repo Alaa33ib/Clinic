@@ -2,7 +2,7 @@ main{  main here
 
 }
 
-public void insertAppt(int IDtextfield, String Timetextfield, String Datetextfield)
+public static void insertAppt(int IDtextfield, String Timetextfield, String Datetextfield)
 {
 	String sql = "INSERT INTO APPOINTMENT (Apptid, Time, Date)" + "VALUES (?, ?, ?);";
 
@@ -15,7 +15,7 @@ public void insertAppt(int IDtextfield, String Timetextfield, String Datetextfie
 	if (rowInserted>0) System.out.println("A new Appointment was inserted successfully");
 }
 
-public void updateApptTime(String Timetextfield, int IDtextfield)
+public static void updateApptTime(String Timetextfield, int IDtextfield)
 {
 	String sql = "UPDATE APPOINTMENT SET Time=? WHERE Apptid=?";
 
@@ -27,7 +27,7 @@ public void updateApptTime(String Timetextfield, int IDtextfield)
 	if (rowUpdated>0) System.out.println("An existing Appointment's Time was updated successfully");
 }
 
-public void updateApptDate(String Datetextfield, int IDtextfield)
+public static void updateApptDate(String Datetextfield, int IDtextfield)
 {
 	String sql = "UPDATE APPOINTMENT SET Date=? WHERE Apptid=?";
 
