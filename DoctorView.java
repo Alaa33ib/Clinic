@@ -227,20 +227,15 @@ public class DoctorView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols-1];
-            for(int i=0; i<cols-1; i++)
-            {
-              if(rm.getColumnName(i+1).equals("Salary"))
-              {
-                colN[i] = rm.getColumnName(i+2);
-                break;
-              } 
-              else
-                colN[i] = rm.getColumnName(i+1);
-
-             }
-             colN[6]= "Resnum";
-             colN[7]= "Street";
-             colN[8]= "Docphone";
+            colN[0] = "Doctor's id";
+            colN[1] = "first name";
+            colN[2] = "last name";
+            colN[3] = "degree";
+            colN[4] = "speciality";
+	        colN[5] = "zip";
+            colN[6]= "Resnum";
+            colN[7]= "Street";
+            colN[8]= "Docphone";
             
             
             
@@ -288,20 +283,15 @@ public class DoctorView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols-1];
-            for(int i=0; i<cols-1; i++)
-            {
-              if(rm.getColumnName(i+1).equals("Salary"))
-              {
-                colN[i] = rm.getColumnName(i+2);
-                break;
-              } 
-              else
-                colN[i] = rm.getColumnName(i+1);
-
-             }
-             colN[6]= "Resnum";
-             colN[7]= "Street";
-             colN[8]= "Docphone";
+            colN[0] = "Doctor's id";
+            colN[1] = "first name";
+            colN[2] = "last name";
+            colN[3] = "degree";
+            colN[4] = "speciality";
+	        colN[5] = "zip";
+            colN[6]= "Resnum";
+            colN[7]= "Street";
+            colN[8]= "Docphone";
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, zip, res, street, phone;
             while(r.next()){
@@ -350,20 +340,15 @@ public class DoctorView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols-1];
-            for(int i=0; i<cols-1; i++)
-            {
-              if(rm.getColumnName(i+1).equals("Salary"))
-              {
-                colN[i] = rm.getColumnName(i+2);
-                break;
-              } 
-              else
-                colN[i] = rm.getColumnName(i+1);
-
-             }
-             colN[6]= "Resnum";
-             colN[7]= "Street";
-             colN[8]= "Docphone";
+            colN[0] = "Doctor's id";
+            colN[1] = "first name";
+            colN[2] = "last name";
+            colN[3] = "degree";
+            colN[4] = "speciality";
+	        colN[5] = "zip";
+            colN[6]= "Resnum";
+            colN[7]= "Street";
+            colN[8]= "Docphone";
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, zip, res, street, phone;
             while(r.next()){
