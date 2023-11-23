@@ -172,8 +172,15 @@ public class PatientView extends javax.swing.JFrame {
         DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
 	int cols = rm.getColumnCount();
         String [] colN = new String[cols-1];
-        for(int i=0; i<cols-1; i++)
-          colN[i] = rm.getColumnName(i+1);
+        colN[0] = "Patient's id";
+        colN[1] = "social security number";
+        colN[2] = "first name";
+        colN[3] = "middle name";
+        colN[4] = "last name";
+	colN[5] = "phone number";
+        colN[6] = "date of birth";
+        colN[7] = "gender";
+
         t.setColumnIdentifiers(colN);
         String id, ssn, first, mid, last, phone, dob, gender;
         while(r.next()){
@@ -214,8 +221,14 @@ catch (Exception e)
         DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
 	int cols = rm.getColumnCount();
         String [] colN = new String[cols-1];
-        for(int i=0; i<cols-1; i++)
-          colN[i] = rm.getColumnName(i+1);
+        colN[0] = "Patient's id";
+        colN[1] = "social security number";
+        colN[2] = "first name";
+        colN[3] = "middle name";
+        colN[4] = "last name";
+	colN[5] = "phone number";
+        colN[6] = "date of birth";
+        colN[7] = "gender";
         t.setColumnIdentifiers(colN);
         String id, ssn, first, mid, last, phone, dob, gender;
         while(r.next()){
@@ -251,8 +264,14 @@ catch (Exception e)
         DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
 	int cols = rm.getColumnCount();
         String [] colN = new String[cols-1];
-        for(int i=0; i<cols-1; i++)
-          colN[i] = rm.getColumnName(i+1);
+        colN[0] = "Patient's id";
+        colN[1] = "social security number";
+        colN[2] = "first name";
+        colN[3] = "middle name";
+        colN[4] = "last name";
+	colN[5] = "phone number";
+        colN[6] = "date of birth";
+        colN[7] = "gender";
         t.setColumnIdentifiers(colN);
         String id, ssn, first, mid, last, phone, dob, gender;
         while(r.next()){
@@ -289,8 +308,14 @@ catch (Exception e)
         DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
 	int cols = rm.getColumnCount();
         String [] colN = new String[cols-1];
-        for(int i=0; i<cols-1; i++)
-          colN[i] = rm.getColumnName(i+1);
+        colN[0] = "Patient's id";
+        colN[1] = "social security number";
+        colN[2] = "first name";
+        colN[3] = "middle name";
+        colN[4] = "last name";
+	colN[5] = "phone number";
+        colN[6] = "date of birth";
+        colN[7] = "gender";
         t.setColumnIdentifiers(colN);
         String id, ssn, first, mid, last, phone, dob, gender;
         while(r.next()){
