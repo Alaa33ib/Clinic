@@ -169,8 +169,11 @@ public class AppView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
            String [] colN = new String[cols];
-            for(int i=0; i<cols; i++)
-                colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Appointment time";
+            colN[2] = "Appointment date";
+            colN[3] = "Patient's id";
+            colN[4] = "Doctor's id";
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
@@ -210,8 +213,11 @@ public class AppView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-            for(int i=0; i<cols; i++)
-                colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Appointment time";
+            colN[2] = "Appointment date";
+            colN[3] = "Patient's id";
+            colN[4] = "Doctor's id";
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
@@ -246,8 +252,11 @@ public class AppView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-            for(int i=0; i<cols; i++)
-                colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Appointment time";
+            colN[2] = "Appointment date";
+            colN[3] = "Patient's id";
+            colN[4] = "Doctor's id";
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
@@ -290,8 +299,11 @@ public class AppView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-            for(int i=0; i<cols; i++)
-                colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Appointment time";
+            colN[2] = "Appointment date";
+            colN[3] = "Patient's id";
+            colN[4] = "Doctor's id";
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
