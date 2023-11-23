@@ -134,8 +134,12 @@ public class DoctorsApps extends javax.swing.JFrame {
             int cols = rm.getColumnCount();
 
             String [] colN = new String[cols];
-            for(int i=0; i<cols; i++)
-            colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Appointment time";
+            colN[2] = "Appointment date";
+            colN[3] = "Patient first name";
+            colN[4] = "Patient last name";
+            colN[5] = "date of birth";
             t.setColumnIdentifiers(colN);
             String id, time, date, df, dl, b;
             while(r.next()) {
