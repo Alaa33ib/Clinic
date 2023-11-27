@@ -214,6 +214,8 @@ catch (Exception e)
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
         Statement statement = connection.createStatement();
+	if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
         
         String sql = "SELECT * FROM patient WHERE Patid =" +jTextField1.getText();
          ResultSet r = statement.executeQuery(sql);
@@ -249,7 +251,10 @@ catch (Exception e)
 catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
- }    }//GEN-LAST:event_jButton3ActionPerformed
+ }  catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+
+        }   }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
      jTable1.setModel(new DefaultTableModel());
@@ -257,6 +262,8 @@ catch (Exception e)
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
         Statement statement = connection.createStatement();
+	if(jTextField2.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField2.getText());
         
         String sql = "SELECT * FROM patient WHERE Patphone =" +jTextField2.getText();
          ResultSet r = statement.executeQuery(sql);
@@ -293,6 +300,10 @@ catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
  }
+ catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -301,6 +312,8 @@ catch (Exception e)
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
         Statement statement = connection.createStatement();
+	if(jTextField3.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField3.getText());
         
         String sql = "SELECT * FROM patient WHERE Pssn =" + jTextField3.getText();
          ResultSet r = statement.executeQuery(sql);
@@ -336,7 +349,12 @@ catch (Exception e)
 catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
- }    }//GEN-LAST:event_jButton6ActionPerformed
+ }  
+ catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
+
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
