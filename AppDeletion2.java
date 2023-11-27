@@ -94,7 +94,9 @@ public class AppDeletion2 extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
+       
+            if((jTextField2.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "Please enter date in this format YYYY-MM-DD" ); //here
+            
             String sql = "DELETE FROM appointment WHERE Date=?";
 
             PreparedStatement statement2 = connection.prepareStatement(sql);
