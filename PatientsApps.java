@@ -158,7 +158,13 @@ public class PatientsApps extends javax.swing.JFrame {
 
             String [] colN = new String[cols];
             for(int i=0; i<cols; i++)
-            colN[i] = rm.getColumnName(i+1);
+            colN[0] = "Appointment id";
+            colN[1] = "Time";
+            colN[2] = "Date";
+            colN[3] = "Doctor's first name";
+            colN[4] = "Doctor's last name";
+            colN[5] = "Doctor's speciality";
+
              t.setColumnIdentifiers(colN);
             String id, time, date, df, dl, s;
             while(r.next()){
