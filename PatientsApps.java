@@ -166,6 +166,7 @@ public class PatientsApps extends javax.swing.JFrame {
 
              t.setColumnIdentifiers(colN);
             String id, time, date, df, dl, s;
+            boolean exists = false;
             while(r.next()){
                 id = r.getString(1);
                 time = r.getString(2);
@@ -177,7 +178,9 @@ public class PatientsApps extends javax.swing.JFrame {
 
                 String [] row = {id, time, date, df, dl,s};
                 t.addRow(row);
+                exists = true;
             }
+         if (!exists) JOptionPane.showMessageDialog(null, "appointment not found");
 
             connection.close();
         }
