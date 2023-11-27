@@ -125,6 +125,8 @@ public class DoctorsApps extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
 
             String sql = "SELECT Apptid, Time, Date, Pfirst, Plast, Dob FROM appointment, patient WHERE Pat_ID = Patid AND Doc_ID=" + jTextField1.getText();
             ResultSet r = statement.executeQuery(sql);
@@ -158,6 +160,10 @@ public class DoctorsApps extends javax.swing.JFrame {
     }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
+
+        }
+         catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
         }
 
