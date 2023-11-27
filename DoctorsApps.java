@@ -158,15 +158,16 @@ public class DoctorsApps extends javax.swing.JFrame {
 
             connection.close();
     }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
-        }
-         catch (NumberFormatException e)
+            catch (NumberFormatException e)
         {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
         }
 
+        catch (Exception e)
+        {  JOptionPane.showMessageDialog(null, e.toString());
+
+        }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
