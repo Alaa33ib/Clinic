@@ -168,6 +168,8 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+	    if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
 
             String sql = "SELECT * FROM doctor WHERE Docid =" +jTextField1.getText();
             ResultSet r = statement.executeQuery(sql);
@@ -212,6 +214,9 @@ public class DoctorView extends javax.swing.JFrame {
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
         }
+	     catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -220,6 +225,8 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+		if(jTextField1.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
 
             String sql = "SELECT * FROM doctor WHERE Docphone =" +jTextField2.getText();
             ResultSet r = statement.executeQuery(sql);
@@ -262,6 +269,10 @@ public class DoctorView extends javax.swing.JFrame {
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
+
+        }
+	 catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -333,6 +344,7 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+	    
 
             String sql = "SELECT * FROM doctor WHERE Speciality =" + "'" + jTextField3.getText() + "'";
             ResultSet r = statement.executeQuery(sql);
