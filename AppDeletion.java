@@ -113,13 +113,15 @@ try{
             JOptionPane.showMessageDialog(null, "Appointment successfully deleted!");
        connection.close();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+ catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "Invalid id, please enter a 5 digit number"); 
+}
+	
  catch (Exception e)
  {  JOptionPane.showMessageDialog(null, e.toString());  
             
  } 
-catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "Invalid id, please enter a 5 digit number"); 
-}
 	    
 }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
