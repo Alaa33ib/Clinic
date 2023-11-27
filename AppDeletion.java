@@ -117,6 +117,10 @@ try{
  {  JOptionPane.showMessageDialog(null, e.toString());  
             
  } 
+catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "Invalid id, please enter a 5 digit number"); 
+}
+	    
 }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ReceptionistPage r = new ReceptionistPage();
