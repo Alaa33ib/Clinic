@@ -206,12 +206,13 @@ public class DoctorView extends javax.swing.JFrame {
             jTextField1.setText("");
             connection.close();
         }
+	catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+        }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
         }
-	     catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-        }
+	     
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
