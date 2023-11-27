@@ -225,8 +225,8 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-		if(jTextField1.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
+		if(jTextField2.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField2.getText());
 
             String sql = "SELECT * FROM doctor WHERE Docphone =" +jTextField2.getText();
             ResultSet r = statement.executeQuery(sql);
