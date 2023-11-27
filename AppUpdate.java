@@ -237,19 +237,20 @@ public class AppUpdate extends javax.swing.JFrame {
 
 
 }
+catch (java.sql.DataTruncation e)
+    {
+       JOptionPane.showMessageDialog(null, "invalid date or time");
+    }
+catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
+        }
 catch (Exception e)
 {  
     JOptionPane.showMessageDialog(null, e.toString());          
 }
- catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+ 
 
-        }
-catch (MysqlDataTruncation e)
-    {
-       JOptionPane.showMessageDialog(null, "invalid date or time");
-    }
      }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCheckBox1PropertyChange
