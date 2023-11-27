@@ -246,6 +246,10 @@ catch (Exception e)
         {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
         }
+catch (MysqlDataTruncation e)
+    {
+       JOptionPane.showMessageDialog(null, "invalid date or time");
+    }
      }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCheckBox1PropertyChange
