@@ -175,17 +175,18 @@ public class AppInsertion extends javax.swing.JFrame {
             
         connection.close();
     }//GEN-LAST:event_jButton1ActionPerformed
-    catch (Exception e)
-    {  
-        JOptionPane.showMessageDialog(null, e.toString());      
-    }
+ 
     catch (NumberFormatException e)
         {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
         }
-    catch (MysqlDataTruncation e) 
+    catch (java.sql.DataTruncation e) 
     {
 	JOptionPane.showMessageDialog(null, "Please enter a valid time/date.");
+    }
+	       catch (Exception e)
+    {  
+        JOptionPane.showMessageDialog(null, e.toString());      
     }
  }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
