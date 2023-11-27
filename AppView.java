@@ -179,16 +179,19 @@ public class AppView extends javax.swing.JFrame {
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 id2 = r.getString(4);
                 id3 = r.getString(5);
-               
+                exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found");
              jTextField2.setText("");
             connection.close();
         }
@@ -227,16 +230,19 @@ public class AppView extends javax.swing.JFrame {
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 id2 = r.getString(4);
                 id3 = r.getString(5);
-               
+                exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found");
 
             connection.close();
         }
@@ -268,16 +274,19 @@ public class AppView extends javax.swing.JFrame {
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 id2 = r.getString(4);
                 id3 = r.getString(5);
-               
+                exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found");
            jTextField3.setText("");
             connection.close();
         }
@@ -322,16 +331,19 @@ public class AppView extends javax.swing.JFrame {
 
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 id2 = r.getString(4);
                 id3 = r.getString(5);
-               
+                exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found");
             jTextField1.setText("");
             connection.close();
         }
