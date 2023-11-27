@@ -247,13 +247,14 @@ catch (Exception e)
         }
         jTextField1.setText("");
         connection.close();
-    }                                        
+    }  
+     catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+
 catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
- }  catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-
+ } 
         }   }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -295,15 +296,16 @@ catch (Exception e)
         }
          jTextField2.setText("");
         connection.close();
-    }                                        
+    }  
+	catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
+
+        }                                      
 catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
  }
- catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
-
-        }
+ 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -345,15 +347,16 @@ catch (Exception e)
         }
         jTextField3.setText("");
         connection.close();
-    }                                        
+    }   
+	catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
+
+        }                                     
 catch (Exception e)
 {  JOptionPane.showMessageDialog(null, e.toString());  
             
  }  
- catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
 
-        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
