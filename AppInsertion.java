@@ -183,7 +183,7 @@ public class AppInsertion extends javax.swing.JFrame {
         {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
 
         }
-    catch (MysqlDataTruncation) 
+    catch (MysqlDataTruncation e) 
     {
 	JOptionPane.showMessageDialog(null, "Please enter a valid time/date.");
     }
