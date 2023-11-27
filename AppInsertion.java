@@ -146,7 +146,16 @@ public class AppInsertion extends javax.swing.JFrame {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
         Statement statement = connection.createStatement();
-        
+	if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
+	if((jTextField2.getText().length()!=5)||(jTextField2.getText().charAt(2)!=':')) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
+        if((jTextField3.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
+	if(jTextField4.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField4.getText());
+	if(jTextField5.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField5.getText());
+
+	     
         String sql = "INSERT INTO APPOINTMENT (Apptid, Time, Date, Pat_ID, Doc_ID)" + "VALUES (?, ?, ?, ?, ?);";
 
 	PreparedStatement statement2 = connection.prepareStatement(sql);
@@ -170,6 +179,10 @@ public class AppInsertion extends javax.swing.JFrame {
     {  
         JOptionPane.showMessageDialog(null, e.toString());      
     }
+    catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+
+        }
  }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        ReceptionistPage r = new ReceptionistPage();
