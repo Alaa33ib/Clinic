@@ -176,6 +176,8 @@ public class DrugView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
 
             String sql = "SELECT * FROM drug WHERE Drugid =" +jTextField1.getText();
             ResultSet r = statement.executeQuery(sql);
