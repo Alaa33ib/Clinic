@@ -97,7 +97,10 @@ try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
         Statement statement = connection.createStatement();
-        
+
+	if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "Invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
+	
         String sql = "DELETE FROM appointment WHERE Apptid=?";
 
 	PreparedStatement statement2 = connection.prepareStatement(sql);
