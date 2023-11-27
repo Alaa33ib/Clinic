@@ -196,6 +196,10 @@ public class AppView extends javax.swing.JFrame {
         {  JOptionPane.showMessageDialog(null, e.toString());
 
         }
+        catch ( e)
+    {
+       JOptionPane.showMessageDialog(null, "invalid date ");
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -279,6 +283,10 @@ public class AppView extends javax.swing.JFrame {
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());}
+        catch (MysqlDataTruncation e)
+    {
+       JOptionPane.showMessageDialog(null, "invalid time");
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
