@@ -177,8 +177,8 @@ public class AppUpdate extends javax.swing.JFrame {
         Statement statement = connection.createStatement();  
 	if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
             int check = Integer.parseInt(jTextField1.getText());
-	if((jTextField2.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
-	if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!'=':)) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
+	if((jTextField2.getText().length()!=10)||(jTextField2.getText().charAt(4)!='-')||(jTextField2.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
+	if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!=':')) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
         
         if(jCheckBox1.isSelected() && jCheckBox2.isSelected())
         {
