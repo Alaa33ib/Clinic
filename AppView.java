@@ -162,6 +162,8 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+            if((jTextField2.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
+
 
             String sql = "SELECT * FROM appointment WHERE Date =" + "'"+ jTextField2.getText()+ "'";
             ResultSet r = statement.executeQuery(sql);
@@ -245,6 +247,8 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+            if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!'=':)) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
+
 
             String sql = "SELECT * FROM appointment WHERE Time ="+ "'" + jTextField3.getText() + ":00" + "'";
             ResultSet r = statement.executeQuery(sql);
@@ -292,6 +296,9 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
+            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
+            int check = Integer.parseInt(jTextField1.getText());
+                
 
             String sql = "SELECT * FROM appointment WHERE Apptid =" +jTextField1.getText();
             ResultSet r = statement.executeQuery(sql);
@@ -322,6 +329,10 @@ public class AppView extends javax.swing.JFrame {
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
+        }
+        catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
