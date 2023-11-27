@@ -204,11 +204,8 @@ public class ViewMyAppD extends javax.swing.JFrame {
                 }
                 time = r.getString(2);
                 date = r.getString(3);
-        try {
             Date parsedDate = sdf.parse(date); 
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
-        }
+        
                 id2 = r.getString(4);
                 if(id2.length() != 5 ){
                 length2 = false;
@@ -237,6 +234,8 @@ public class ViewMyAppD extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null, "invalid ID");
             jTextField2.setText("");
             connection.close();
+        }catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "invalid Date");
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
@@ -283,11 +282,8 @@ public class ViewMyAppD extends javax.swing.JFrame {
                 }
                 time = r.getString(2);
                 date = r.getString(3);
-        try {
             Date parsedDate = sdf.parse(date); 
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
-        }
+        
                 id2 = r.getString(4);
                 if(id2.length() != 5 ){
                 length2 = false;
@@ -316,6 +312,9 @@ public class ViewMyAppD extends javax.swing.JFrame {
 
 
             connection.close();
+        }
+            catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "invalid Date");
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
@@ -361,11 +360,8 @@ public class ViewMyAppD extends javax.swing.JFrame {
                 }
                 time = r.getString(2);
                 date = r.getString(3);
-        try {
             Date parsedDate = sdf.parse(date); 
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
-        }
+
                 id2 = r.getString(4);
                 if(id2.length() != 5 ){
                 length2 = false;
@@ -393,6 +389,8 @@ public class ViewMyAppD extends javax.swing.JFrame {
 
             jTextField3.setText("");
             connection.close();
+        }catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "invalid Date");
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());}
