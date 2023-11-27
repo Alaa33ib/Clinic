@@ -232,16 +232,19 @@ public class DrugView extends javax.swing.JFrame {
             
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-
+                exist = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Drug not found");
             jTextField2.setText("");
             connection.close();
         }
@@ -272,17 +275,20 @@ public class DrugView extends javax.swing.JFrame {
             
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-
+                exist = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
 
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Drug not found");
             connection.close();
         }
         catch (Exception e)
@@ -311,16 +317,19 @@ public class DrugView extends javax.swing.JFrame {
             
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
+            boolean exist = false;
             while(r.next()){
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-
+                exist = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "Drug not found");
             jTextField3.setText("");
             connection.close();
         }
