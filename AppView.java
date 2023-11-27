@@ -162,7 +162,7 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            if((jTextField2.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
+            if((jTextField2.getText().length()!=10)||(jTextField2.getText().charAt(4)!='-')||(jTextField2.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
 
 
             String sql = "SELECT * FROM appointment WHERE Date =" + "'"+ jTextField2.getText()+ "'";
@@ -247,7 +247,7 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!'=':)) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
+            if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!=':')) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
 
 
             String sql = "SELECT * FROM appointment WHERE Time ="+ "'" + jTextField3.getText() + ":00" + "'";
