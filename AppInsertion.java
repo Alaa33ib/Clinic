@@ -1,4 +1,3 @@
-
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -7,6 +6,8 @@ public class AppInsertion extends javax.swing.JFrame {
 
     public AppInsertion() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
     
@@ -35,8 +36,8 @@ public class AppInsertion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Receptionist View");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Please enter the new appointment's information");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Please enter the new appointment's information:");
 
         jLabel3.setText("Appointment ID");
 
@@ -66,52 +67,54 @@ public class AppInsertion extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(235, 235, 235)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel2)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,7 +134,7 @@ public class AppInsertion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -143,51 +146,57 @@ public class AppInsertion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      try{   
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
-        Statement statement = connection.createStatement();
-	if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
-	if((jTextField2.getText().length()!=5)||(jTextField2.getText().charAt(2)!=':')) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
-        if((jTextField3.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
-	if(jTextField4.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField4.getText());
-	if(jTextField5.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField5.getText());
+          Class.forName("com.mysql.cj.jdbc.Driver");
+          Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");  
+          Statement statement = connection.createStatement();
+          if(jTextField1.getText().length()!=5)
+             JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+          else
+          {
+             int check = Integer.parseInt(jTextField1.getText());
+             if((jTextField2.getText().length()!=5)||(jTextField2.getText().charAt(2)!=':'))
+                JOptionPane.showMessageDialog(null, "Invalid format: please enter time in this format HH:MM.");
+             else
+               {  
+                   if((jTextField3.getText().length()!=10)||(jTextField3.getText().charAt(4)!='-')||(jTextField3.getText().charAt(7)!='-'))
+                      JOptionPane.showMessageDialog(null, "Invalid format: please enter date in this format YYYY-MM-DD." );
+                   else 
+                   {
+                       if(jTextField4.getText().length()!=5) 
+                          JOptionPane.showMessageDialog(null, "Invalid doctor ID: must be 5 characters long!");
+                         else
+                         {
+                           int x = Integer.parseInt(jTextField4.getText());
+                           if(jTextField5.getText().length()!=5) 
+                               JOptionPane.showMessageDialog(null, "Invalid patient ID: must be 5 characters long!");
+                           else
+                           { 
+                               int y = Integer.parseInt(jTextField5.getText());
+                               String sql = "INSERT INTO APPOINTMENT (Apptid, Time, Date, Pat_ID, Doc_ID)" + "VALUES (?, ?, ?, ?, ?);";
 
-	     
-        String sql = "INSERT INTO APPOINTMENT (Apptid, Time, Date, Pat_ID, Doc_ID)" + "VALUES (?, ?, ?, ?, ?);";
-
-	PreparedStatement statement2 = connection.prepareStatement(sql);
-        int x = Integer.parseInt(jTextField1.getText());
-	statement2.setString(1, jTextField1.getText());
-	statement2.setString(2, jTextField2.getText());
-	statement2.setString(3, jTextField3.getText()+ ":00");
-	statement2.setString(4, jTextField5.getText());
-	statement2.setString(5, jTextField4.getText());
+	                       PreparedStatement statement2 = connection.prepareStatement(sql);
+	                       statement2.setString(1, jTextField1.getText());
+	                       statement2.setString(2, jTextField2.getText());
+	                       statement2.setString(3, jTextField3.getText()+ ":00");
+	                       statement2.setString(4, jTextField5.getText());
+	                       statement2.setString(5, jTextField4.getText());
         
-	int rowInserted = statement2.executeUpdate(); 
-	if (rowInserted>0) 
-        {
-            System.out.println("A new Appointment was inserted successfully");
-            JOptionPane.showMessageDialog(null, "A new Appointment was inserted successfully");
-        }
+	                       int rowInserted = statement2.executeUpdate(); 
+	                       if (rowInserted>0)    
+                                  JOptionPane.showMessageDialog(null, "A new appointment was inserted successfully!");
+                               
             
-        connection.close();
+        } } } } } 
+       connection.close();
     }//GEN-LAST:event_jButton1ActionPerformed
- 
-    catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-
-        }
-    catch (java.sql.DataTruncation e) 
-    {
-	JOptionPane.showMessageDialog(null, "Please enter a valid time/date.");
-    }
-	       catch (Exception e)
-    {  
-        JOptionPane.showMessageDialog(null, e.toString());      
-    }
+     catch(NumberFormatException e)
+     { JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only."); }
+     catch (java.sql.SQLIntegrityConstraintViolationException e)
+     { JOptionPane.showMessageDialog(null, "Invalid ID: appointment ID already exists in the database or doctor and/or patient don't exist!"); }
+     catch (java.sql.DataTruncation e) 
+     { JOptionPane.showMessageDialog(null, "Please enter a valid time/date."); }    
+     catch (Exception e)
+     { JOptionPane.showMessageDialog(null, e.toString());  }
  }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        ReceptionistPage r = new ReceptionistPage();

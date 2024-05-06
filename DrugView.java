@@ -11,6 +11,8 @@ public class DrugView extends javax.swing.JFrame {
 
     public DrugView() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -171,14 +173,16 @@ public class DrugView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();
-            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
-
+      jTable1.setModel(new DefaultTableModel());
+      try{
+          Class.forName("com.mysql.cj.jdbc.Driver");
+          Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+          Statement statement = connection.createStatement();
+          if(jTextField1.getText().length()!=5) 
+             JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+          else 
+          {
+            int check = Integer.parseInt(jTextField1.getText());  
             String sql = "SELECT * FROM drug WHERE Drugid =" +jTextField1.getText();
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -186,25 +190,33 @@ public class DrugView extends javax.swing.JFrame {
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
             colN[0]= "Drug ID";
-            colN[1]= "Drug Name";
+            colN[1]= "Drug name";
             colN[2]= "Price";
             colN[3]= "Usage";
-            colN[4]= "Expiration Date";
-            
+            colN[4]= "Expiration date";          
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-
+                exists = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
-            }
+            } 
+            if(!exists)
+             JOptionPane.showMessageDialog(null, "Drug not found!"); }
             jTextField1.setText("");
             connection.close();
+        }
+        catch (NumberFormatException e)   
+        {
+          JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+          jTextField1.setText("");
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
@@ -213,54 +225,50 @@ public class DrugView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jTable1.setModel(new DefaultTableModel());
-        try{
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT * FROM drug WHERE Drugname =" + "'"+ jTextField2.getText()+ "'";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-           colN[0]= "Drug ID";
-            colN[1]= "Drug Name";
+            colN[0]= "Drug ID";
+            colN[1]= "Drug name";
             colN[2]= "Price";
             colN[3]= "Usage";
-            colN[4]= "Expiration Date";
-            
+            colN[4]= "Expiration date";
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
-            boolean exist = false;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-                exist = true;
+                exists = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
-            if(!exist)
-                JOptionPane.showMessageDialog(null, "Drug not found");
+            if(!exists)
+             JOptionPane.showMessageDialog(null, "Drug not found!");
             jTextField2.setText("");
             connection.close();
         }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT * FROM drug";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -268,41 +276,34 @@ public class DrugView extends javax.swing.JFrame {
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
             colN[0]= "Drug ID";
-            colN[1]= "Drug Name";
+            colN[1]= "Drug name";
             colN[2]= "Price";
             colN[3]= "Usage";
-            colN[4]= "Expiration Date";
-            
+            colN[4]= "Expiration date";      
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
-            boolean exist = false;
-            while(r.next()){
+            while(r.next())
+            {
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-                exist = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
-
-            if(!exist)
-                JOptionPane.showMessageDialog(null, "Drug not found");
             connection.close();
         }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT * FROM drug AS D WHERE D.Usage=" + "'" + jTextField3.getText()+ "'";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -310,26 +311,25 @@ public class DrugView extends javax.swing.JFrame {
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
             colN[0]= "Drug ID";
-            colN[1]= "Drug Name";
+            colN[1]= "Drug name";
             colN[2]= "Price";
             colN[3]= "Usage";
-            colN[4]= "Expiration Date";
-            
+            colN[4]= "Expiration date";           
             t.setColumnIdentifiers(colN);
             String id, name, p, u, e;
-            boolean exist = false;
+            boolean exists = false;
             while(r.next()){
                 id = r.getString(1);
                 name = r.getString(2);
                 p = r.getString(3) + " Sar";
                 u = r.getString(4);
                 e = r.getString(5);
-                exist = true;
+                exists = true;
                 String [] row = {id, name, p, u, e};
                 t.addRow(row);
             }
-            if(!exist)
-                JOptionPane.showMessageDialog(null, "Drug not found");
+            if(!exists)
+              JOptionPane.showMessageDialog(null, "Drug not found!");
             jTextField3.setText("");
             connection.close();
         }

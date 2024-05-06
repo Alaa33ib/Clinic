@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +13,8 @@ public class ViewMyInfoD extends javax.swing.JFrame {
    
     public ViewMyInfoD() {
         initComponents();
+          this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
@@ -83,27 +84,25 @@ public class ViewMyInfoD extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(252, 252, 252)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,10 +117,10 @@ public class ViewMyInfoD extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,7 +136,6 @@ jTable1.setModel(new DefaultTableModel());
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT * FROM doctor WHERE Docid =" +GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -145,19 +143,19 @@ jTable1.setModel(new DefaultTableModel());
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
              colN[0] = "ID";
-             colN[1]= "First Name";
-             colN[2]= "Last Name";
+             colN[1]= "First name";
+             colN[2]= "Last name";
              colN[3]= "Degree";
              colN[4]= "Speciality";
              colN[5]= "Salary";
-             colN[6]= "ZIP Code";
-             colN[7]= "Residence Number";
+             colN[6]= "Zip";
+             colN[7]= "Residence";
              colN[8]= "Street";
-             colN[9]= "Phone Number";
-             
+             colN[9]= "Phone number";  
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, salary, zip, res, street, phone;
-            while(r.next()){
+            while(r.next())
+            {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -168,8 +166,6 @@ jTable1.setModel(new DefaultTableModel());
                 res = r.getString(8);
                 street = r.getString(9);
                 phone = r.getString(10);
-                
-                
                 String [] row = {id,first,last,degree,speciality, salary, zip, res, street, phone};
                 t.addRow(row);
             }
@@ -185,46 +181,44 @@ jTable1.setModel(new DefaultTableModel());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();
-         if(jTextField1.getText().length() != 10)
-             JOptionPane.showMessageDialog(null, "Invalid Phone number");
-         else 
-         { int x = Integer.parseInt(jTextField1.getText());
-        
+   try{
+       Class.forName("com.mysql.cj.jdbc.Driver");
+       Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+       Statement statement = connection.createStatement();
+       if(jTextField1.getText().length() != 10)
+         JOptionPane.showMessageDialog(null, "Invalid phone number: must be 10 characters long!");
+       else 
+       { 
+        int x = Integer.parseInt(jTextField1.getText());
         String sql = "UPDATE doctor SET Docphone=? WHERE Docid=?";
-
-	 PreparedStatement statement2 = connection.prepareStatement(sql);
-	 statement2.setString(1, jTextField1.getText());
-         statement2.setString(2, GUILogin2.id);
-
+	PreparedStatement statement2 = connection.prepareStatement(sql);
+        statement2.setString(1, jTextField1.getText());
+        statement2.setString(2, GUILogin2.id);
 	int rowUpdated = statement2.executeUpdate(); 
         if(rowUpdated == 1)
         {  
-         jTable1.setModel(new DefaultTableModel());
-         String sql2 = "SELECT * FROM doctor WHERE Docid =" +GUILogin2.id;
+            jTable1.setModel(new DefaultTableModel());
+            String sql2 = "SELECT * FROM doctor WHERE Docid =" +GUILogin2.id;
             ResultSet r = statement.executeQuery(sql2);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
              colN[0] = "ID";
-             colN[1]= "First Name";
-             colN[2]= "Last Name";
+             colN[1]= "First name";
+             colN[2]= "Last name";
              colN[3]= "Degree";
              colN[4]= "Speciality";
              colN[5]= "Salary";
-             colN[6]= "ZIP Code";
-             colN[7]= "Residence Number";
+             colN[6]= "Zip";
+             colN[7]= "Residence";
              colN[8]= "Street";
-             colN[9]= "Phone Number";
-             
+             colN[9]= "Phone number";    
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, salary, zip, res, street, phone;
 
-            while(r.next()){
+            while(r.next())
+            {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -234,24 +228,18 @@ jTable1.setModel(new DefaultTableModel());
                 zip = r.getString(7);
                 res = r.getString(8);
                 street = r.getString(9);
-                phone = r.getString(10);
-                
+                phone = r.getString(10);   
                 String [] row = {id,first,last,degree,speciality, salary, zip, res, street, phone};
                 t.addRow(row);
             }
-             JOptionPane.showMessageDialog(null, "Phone Number Successfully Updated!");
+             JOptionPane.showMessageDialog(null, "Phone number successfully updated!");
         }   
          connection.close();}
         }
-         catch(NumberFormatException e){
-         JOptionPane.showMessageDialog(null, "Invalid Phone number");
-         
-         }
+        catch(NumberFormatException e)
+        { JOptionPane.showMessageDialog(null, "Invalid phone number: please enter digits only.");}
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
-         
-
+        {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,17 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class ViewMyAppD extends javax.swing.JFrame {
 
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-  
+    
     public ViewMyAppD() {
         initComponents();
+          this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
     @SuppressWarnings("unchecked")
@@ -67,6 +65,12 @@ public class ViewMyAppD extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("View All Appointments");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,38 +102,34 @@ public class ViewMyAppD extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(237, 237, 237))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(215, 215, 215))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 17, Short.MAX_VALUE))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(237, 237, 237))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(202, 202, 202))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,79 +164,49 @@ public class ViewMyAppD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
-            String sql = "SELECT * FROM appointment WHERE Date =" + "'"+ jTextField2.getText()+ "'"+ " AND Doc_ID=" +GUILogin2.id;
+           if(jTextField2.getText().length()!=10||jTextField2.getText().charAt(4)!='-'|| jTextField2.getText().charAt(7)!='-' || !Character.isDigit(jTextField2.getText().charAt(0))|| !Character.isDigit(jTextField2.getText().charAt(1))||! Character.isDigit(jTextField2.getText().charAt(2))|| !Character.isDigit(jTextField2.getText().charAt(3)) || !(Character.isDigit(jTextField2.getText().charAt(6)))|| !(Character.isDigit(jTextField2.getText().charAt(5))) || !(Character.isDigit(jTextField2.getText().charAt(8)))|| !(Character.isDigit(jTextField2.getText().charAt(9))))   
+             JOptionPane.showMessageDialog(null, "Invalid format: please enter date in this format YYYY-MM-DD and ensure the characters are digits." );
+            else {
+            String sql = "SELECT Apptid, Time, Date, Pat_ID, Pfirst, Plast, Diagnosis FROM appointment, patient WHERE Date =" + "'"+ jTextField2.getText()+ "'"+ " AND Doc_ID=" +GUILogin2.id + " AND Pat_ID=Patid";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
-            
+            String [] colN = new String[cols]; 
             colN[0] = "Appointment ID";
             colN[1] = "Time";
             colN[2] = "Date";
             colN[3] = "Patient ID";
-            colN[4] = "Doctor ID";
-            
+            colN[4] = "Patient Fname";
+            colN[5] = "Patient Lname";
+            colN[6] = "Patient Diagnosis";
             t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
+            String id, time, date, id2, fname, lname, diagnosis;
             boolean flag = false;
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
-            boolean length3 = true;
-            boolean isDigitId3 = true;
-            while(r.next()){
+            while(r.next())
+            {
                 id = r.getString(1);
-                 if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 time = r.getString(2);
                 date = r.getString(3);
-            Date parsedDate = sdf.parse(date); 
-        
                 id2 = r.getString(4);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
-                id3 = r.getString(5);
-                if(id3.length() != 5 ){
-                length3 = false;
-                }
-                for(int i = 0; i < id3.length();i++){
-                  if( !(id3.charAt(i) >=0 && id3.charAt(i)<=9))
-                      isDigitId3 = false;
-                  break;
-                }
-                    flag = true;
-                String [] row = {id, time, date, id2, id3};
+                fname = r.getString(5);
+                lname = r.getString(6);
+                diagnosis = r.getString(7); 
+                flag = true;
+                String [] row = {id, time, date, id2, fname, lname, diagnosis};
                 t.addRow(row);
             }
             if(!flag)
-             JOptionPane.showMessageDialog(null, "No appointments with this date!");   
-            if( !isDigitId || !length || !isDigitId2 ||!length2 || !isDigitId3 || !length3 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
+             JOptionPane.showMessageDialog(null, "No appointments with this date!"); }   
             jTextField2.setText("");
             connection.close();
-        }catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
         }
+
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
 
@@ -244,77 +214,43 @@ public class ViewMyAppD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
-            String sql = "SELECT * FROM appointment WHERE Doc_ID=" +GUILogin2.id;
-            ResultSet r = statement.executeQuery( sql);
+            String sql = "SELECT Apptid, Time, Date, Pat_ID, Pfirst, Plast, Diagnosis FROM appointment, patient WHERE Doc_ID=" +GUILogin2.id + " AND Pat_ID=Patid";
+            ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
+            String [] colN = new String[cols]; 
             colN[0] = "Appointment ID";
             colN[1] = "Time";
             colN[2] = "Date";
             colN[3] = "Patient ID";
-            colN[4] = "Doctor ID";
-
+            colN[4] = "Patient Fname";
+            colN[5] = "Patient Lname";
+            colN[6] = "Patient Diagnosis";
             t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
-            boolean length3 = true;
-            boolean isDigitId3 = true;
-            while(r.next()){
+            String id, time, date, id2, fname, lname, diagnosis;
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                 if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 time = r.getString(2);
                 date = r.getString(3);
-            Date parsedDate = sdf.parse(date); 
-        
                 id2 = r.getString(4);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
-                id3 = r.getString(5);
-                if(id3.length() != 5 ){
-                length3 = false;
-                }
-                for(int i = 0; i < id3.length();i++){
-                  if( !(id3.charAt(i) >=0 && id3.charAt(i)<=9))
-                      isDigitId3 = false;
-                  break;
-                }
-                    
-                String [] row = {id, time, date, id2, id3};
+                fname = r.getString(5);
+                lname = r.getString(6);
+                diagnosis = r.getString(7); 
+                exists = true;
+                String [] row = {id, time, date, id2, fname, lname, diagnosis};
                 t.addRow(row);
             }
-             
-            if( !isDigitId || !length || !isDigitId2 ||!length2 || !isDigitId3 || !length3 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
-
-
+            if(!exists)
+              JOptionPane.showMessageDialog(null, "No appointments found!");
             connection.close();
-        }
-            catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
         }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
@@ -327,71 +263,44 @@ public class ViewMyAppD extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
-            String sql = "SELECT * FROM appointment WHERE Time ="+ "'" + jTextField3.getText() + ":00" + "'"+ " AND Doc_ID=" +GUILogin2.id;
+            if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!=':') || !Character.isDigit(jTextField3.getText().charAt(0))|| !Character.isDigit(jTextField3.getText().charAt(1))||! Character.isDigit(jTextField3.getText().charAt(3))|| !Character.isDigit(jTextField3.getText().charAt(4))) 
+                JOptionPane.showMessageDialog(null, "Invalid format: please enter time in this format HH:MM and ensure all characters are digits." );
+            else {
+            String sql = "SELECT Apptid, Time, Date, Pat_ID, Pfirst, Plast, Diagnosis FROM appointment, patient WHERE Time =" + "'"+ jTextField3.getText()+ "'"+ " AND Doc_ID=" +GUILogin2.id + " AND Pat_ID=Patid";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
+            String [] colN = new String[cols];        
             colN[0] = "Appointment ID";
             colN[1] = "Time";
             colN[2] = "Date";
             colN[3] = "Patient ID";
-            colN[4] = "Doctor ID";
-
+            colN[4] = "Patient Fname";
+            colN[5] = "Patient Lname";
+            colN[6] = "Patient Diagnosis";
             t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
-            boolean length3 = true;
-            boolean isDigitId3 = true;
-            while(r.next()){
+            String id, time, date, id2, fname, lname, diagnosis;
+            boolean flag = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                 if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 time = r.getString(2);
                 date = r.getString(3);
-            Date parsedDate = sdf.parse(date); 
-
                 id2 = r.getString(4);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
-                id3 = r.getString(5);
-                if(id3.length() != 5 ){
-                length3 = false;
-                }
-                for(int i = 0; i < id3.length();i++){
-                  if( !(id3.charAt(i) >=0 && id3.charAt(i)<=9))
-                      isDigitId3 = false;
-                  break;
-                }
-                  
-                String [] row = {id, time, date, id2, id3};
+                fname = r.getString(5);
+                lname = r.getString(6);
+                diagnosis = r.getString(7); 
+                flag = true;
+                String [] row = {id, time, date, id2, fname, lname, diagnosis};
                 t.addRow(row);
             }
-            if( !isDigitId || !length || !isDigitId2 ||!length2 || !isDigitId3 || !length3 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
-
+            if(!flag)
+             JOptionPane.showMessageDialog(null, "No appointments with this time!"); }
             jTextField3.setText("");
             connection.close();
-        }catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "invalid Date");
         }
+
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -403,6 +312,10 @@ public class ViewMyAppD extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         jTable1.setModel(new DefaultTableModel());
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
   
 

@@ -6,6 +6,8 @@ public class PatientsApps extends javax.swing.JFrame {
 
     public PatientsApps() {
         initComponents();
+         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -142,52 +144,51 @@ public class PatientsApps extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        try{
+      try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
-            String sql = "SELECT Apptid, Time, Date, Dfirst, Dlast, Speciality FROM appointment, doctor WHERE Doc_ID = Docid AND Pat_ID=" + jTextField1.getText();
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            
-
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-
-            String [] colN = new String[cols];
-            colN[0] = "Appointment id";
-            colN[1] = "Time";
-            colN[2] = "Date";
-            colN[3] = "Doctor's first name";
-            colN[4] = "Doctor's last name";
-            colN[5] = "Doctor's speciality";
-
+            if(jTextField1.getText().length()!=5) 
+            JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+            else 
+            {
+             int check = Integer.parseInt(jTextField1.getText());
+             String sql = "SELECT Apptid, Time, Date, Dfirst, Dlast, Speciality FROM appointment, doctor WHERE Doc_ID = Docid AND Pat_ID=" + jTextField1.getText();
+             ResultSet r = statement.executeQuery(sql);
+             ResultSetMetaData rm =  r.getMetaData();
+             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+             int cols = rm.getColumnCount();
+             String [] colN = new String[cols];
+             colN[0] = "Appointment ID";
+             colN[1] = "Time";
+             colN[2] = "Date";
+             colN[3] = "Doctor's first name";
+             colN[4] = "Doctor's last name";
+             colN[5] = "Doctor's speciality";
              t.setColumnIdentifiers(colN);
-            String id, time, date, df, dl, s;
-            boolean exists = false;
-            while(r.next()){
+             String id, time, date, df, dl, s;
+             boolean exists = false;
+             while(r.next())
+             {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 df = r.getString(4);
                 dl = r.getString(5);
                 s = r.getString(6);
-   
-
                 String [] row = {id, time, date, df, dl,s};
                 t.addRow(row);
                 exists = true;
-            }
-         if (!exists) JOptionPane.showMessageDialog(null, "appointment not found");
-
-            connection.close();
-        }
+             }
+             if(!exists) 
+               JOptionPane.showMessageDialog(null, "No appointments found!"); }
+             jTextField1.setText("");
+             connection.close();
+         }
+        catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only."); }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString());  }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -9,6 +9,8 @@ public class DoctorView extends javax.swing.JFrame {
 
     public DoctorView() {
         initComponents();
+         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -168,27 +170,31 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-	    if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
-
-            String sql = "SELECT * FROM doctor WHERE Docid =" +jTextField1.getText();
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-            String [] colN = new String[cols-1];
-             colN[0]= "Doctor's id";
-             colN[1]= "first name";
-             colN[2]= "last name";
-             colN[3]= "degree";
-             colN[4]= "Speciality";
-             colN[5]= "zip";
-             colN[6]= "Resnum";
-             colN[7]= "Street";
-             colN[8]= "Docphone";
-            t.setColumnIdentifiers(colN);
-            String id, first, last, degree, speciality, zip, res, street, phone;
-            while(r.next()){
+            if(jTextField1.getText().length()!=5) 
+                JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+            else
+            {
+              int check = Integer.parseInt(jTextField1.getText());
+              String sql = "SELECT * FROM doctor WHERE Docid =" +jTextField1.getText();
+              ResultSet r = statement.executeQuery(sql);
+              ResultSetMetaData rm =  r.getMetaData();
+              DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+              int cols = rm.getColumnCount();
+              String [] colN = new String[cols-1];
+              colN[0] = "Doctor ID";
+              colN[1] = "First name";
+              colN[2] = "Last name";
+              colN[3] = "Degree";
+              colN[4] = "Speciality";
+	      colN[5] = "Zip";
+              colN[6]= "Residence";
+              colN[7]= "Street";
+              colN[8]= "Phone Number";
+              t.setColumnIdentifiers(colN);
+              String id, first, last, degree, speciality, zip, res, street, phone;
+              boolean exists = false;
+              while(r.next())
+              {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -198,21 +204,24 @@ public class DoctorView extends javax.swing.JFrame {
                 res = r.getString(8);
                 street = r.getString(9);
                 phone = r.getString(10);
-                
-                
+                exists = true;
                 String [] row = {id,first,last,degree,speciality, zip, res, street, phone};
                 t.addRow(row);
-            }
+              }
+              if(!exists)
+                JOptionPane.showMessageDialog(null, "Doctor not found!");
+            }       
             jTextField1.setText("");
             connection.close();
-        }
-	catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-        }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
-	     
+           }
+           catch (NumberFormatException e)
+           {  JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+            jTextField1.setText("");
+           }
+           catch (Exception e)
+           { 
+               JOptionPane.showMessageDialog(null, e.toString());
+           }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -221,30 +230,31 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-		if(jTextField2.getText().length()!=10) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField2.getText());
-
-            String sql = "SELECT * FROM doctor WHERE Docphone =" +jTextField2.getText();
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-            String [] colN = new String[cols-1];
-            colN[0] = "Doctor's id";
-            colN[1] = "first name";
-            colN[2] = "last name";
-            colN[3] = "degree";
-            colN[4] = "speciality";
-	        colN[5] = "zip";
-            colN[6]= "Resnum";
-            colN[7]= "Street";
-            colN[8]= "Docphone";
-            
-            
-            
-            t.setColumnIdentifiers(colN);
-            String id, first, last, degree, speciality, zip, res, street, phone;
-            while(r.next()){
+            if(jTextField2.getText().length()!=10) 
+                JOptionPane.showMessageDialog(null, "Invalid phone number: must be 10 characters long!");
+            else
+            {
+             int check = Integer.parseInt(jTextField2.getText());
+             String sql = "SELECT * FROM doctor WHERE Docphone =" +jTextField2.getText();
+             ResultSet r = statement.executeQuery(sql);
+             ResultSetMetaData rm =  r.getMetaData();
+             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+             int cols = rm.getColumnCount();
+             String [] colN = new String[cols-1];
+             colN[0] = "Doctor ID";
+             colN[1] = "First name";
+             colN[2] = "Last name";
+             colN[3] = "Degree";
+             colN[4] = "Speciality";
+	     colN[5] = "Zip";
+             colN[6]= "Residence";
+             colN[7]= "Street";
+             colN[8]= "Phone number";
+             t.setColumnIdentifiers(colN);
+             String id, first, last, degree, speciality, zip, res, street, phone;
+             boolean exists = false; 
+             while(r.next())
+             {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -254,22 +264,23 @@ public class DoctorView extends javax.swing.JFrame {
                 res = r.getString(8);
                 street = r.getString(9);
                 phone = r.getString(10);
-                
-                
+                exists = true;
                 String [] row = {id,first,last,degree,speciality, zip, res, street, phone};
                 t.addRow(row);
-            }
-
+             }
+            if(!exists)
+               JOptionPane.showMessageDialog(null, "Doctor not found!");}
             jTextField2.setText("");
             connection.close();
         }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
+        catch (NumberFormatException e)
+        {    
+           JOptionPane.showMessageDialog(null, "Invalid phone number: please enter digits only.");
+           jTextField2.setText("");
         }
-	 catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 10 digit number");
-
+        catch (Exception e)
+        {  
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -283,25 +294,26 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT * FROM doctor";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
-            String [] colN = new String[cols-1];
-            colN[0] = "Doctor's id";
-            colN[1] = "first name";
-            colN[2] = "last name";
-            colN[3] = "degree";
-            colN[4] = "speciality";
-	        colN[5] = "zip";
-            colN[6]= "Resnum";
+             String [] colN = new String[cols-1];
+            colN[0] = "Doctor ID";
+            colN[1] = "First name";
+            colN[2] = "Last name";
+            colN[3] = "Degree";
+            colN[4] = "Speciality";
+	    colN[5] = "Zip";
+            colN[6]= "Residence";
             colN[7]= "Street";
-            colN[8]= "Docphone";
+            colN[8]= "Phone Number";
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, zip, res, street, phone;
-            while(r.next()){
+            boolean exist = false;      
+            while(r.next())
+            {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -311,18 +323,16 @@ public class DoctorView extends javax.swing.JFrame {
                 res = r.getString(8);
                 street = r.getString(9);
                 phone = r.getString(10);
-                
-                
+                exist = true;
                 String [] row = {id,first,last,degree,speciality, zip, res, street, phone};
                 t.addRow(row);
             }
-
-
+            if(!exist)
+                JOptionPane.showMessageDialog(null, "No doctor found in system!");
             connection.close();
-        }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+           }
+           catch (Exception e)
+           {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -340,26 +350,26 @@ public class DoctorView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-	    
-
             String sql = "SELECT * FROM doctor WHERE Speciality =" + "'" + jTextField3.getText() + "'";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols-1];
-            colN[0] = "Doctor's id";
-            colN[1] = "first name";
-            colN[2] = "last name";
-            colN[3] = "degree";
-            colN[4] = "speciality";
-	        colN[5] = "zip";
-            colN[6]= "Resnum";
+            colN[0] = "Doctor ID";
+            colN[1] = "First name";
+            colN[2] = "Last name";
+            colN[3] = "Degree";
+            colN[4] = "Speciality";
+	    colN[5] = "Zip";
+            colN[6]= "Residence";
             colN[7]= "Street";
-            colN[8]= "Docphone";
+            colN[8]= "Phone Number";
             t.setColumnIdentifiers(colN);
             String id, first, last, degree, speciality, zip, res, street, phone;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
                 first = r.getString(2);
                 last = r.getString(3);
@@ -369,11 +379,12 @@ public class DoctorView extends javax.swing.JFrame {
                 res = r.getString(8);
                 street = r.getString(9);
                 phone = r.getString(10);
-                
-                
+                exists = true;
                 String [] row = {id,first,last,degree,speciality, zip, res, street, phone};
                 t.addRow(row);
             }
+            if(!exists)
+               JOptionPane.showMessageDialog(null, "Doctor not found!");
             jTextField3.setText("");
             connection.close();
         }

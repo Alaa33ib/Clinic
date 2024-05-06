@@ -10,6 +10,8 @@ public class ViewMyPatD extends javax.swing.JFrame {
 
     public ViewMyPatD() {
         initComponents();
+          this.setResizable(false);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
@@ -158,9 +160,9 @@ public class ViewMyPatD extends javax.swing.JFrame {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,193 +222,121 @@ public class ViewMyPatD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            
             String sql = "SELECT Patid, Pssn, Pfirst, Pmiddle, Plast, Patphone, Dob, Gender, Diagnosis FROM patient, appointment WHERE Patid = Pat_ID AND Diagnosis = " +"'"+ jTextField2.getText()+ "'"+" AND Doc_ID = " + GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-             colN[0] = "ID";
-             colN[1]= "SSN";
-             colN[2]= "First Name";
-             colN[3]= "Middle Name";
-             colN[4]= "Last Name";
-             colN[5]= "Phone Number";
-             colN[6]= "Date of Birth";
-             colN[7]= "Gender";
-             colN[8]= "Diagnosis";
-            
-            
-            
+            colN[0] = "ID";
+            colN[1]= "SSN";
+            colN[2]= "First name";
+            colN[3]= "Middle name";
+            colN[4]= "Last name";
+            colN[5]= "Phone number";
+            colN[6]= "Date of birth";
+            colN[7]= "Gender";
+            colN[8]= "Diagnosis";  
             t.setColumnIdentifiers(colN);
             String id, ssn, first, mid, last, phone, dob, gender, diagnosis;
-            
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean ssnlen = true;
-            boolean ssnDigit =true;
-            boolean phonelen = true;
-            boolean phoneDigit = true;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 ssn = r.getString(2);
-                if(ssn.length() != 10 ){
-                ssnlen = false;
-                }
-                for(int i = 0; i < ssn.length();i++){
-                  if( !(ssn.charAt(i) >=0 && ssn.charAt(i)<=9))
-                      ssnDigit = false;
-                  break;
-                }
-      
                 first = r.getString(3);
                 mid = r.getString(4);
                 last = r.getString(5);
                 phone = r.getString(6);
-                if(phone.length() != 10 ){
-                phonelen = false;
-                }
-                for(int i = 0; i < phone.length();i++){
-                  if( !(phone.charAt(i) >=0 && phone.charAt(i)<=9))
-                      phoneDigit = false;
-                  break;
-                }        
-                 dob = r.getString(7);
+                dob = r.getString(7);
                 gender = r.getString(8);
                 diagnosis =r.getString(9);
+                exists = true;
                 String [] row = {id,ssn,first,mid,last,phone,dob, gender,diagnosis};
                 t.addRow(row);
             }
-            
-   if( !isDigitId || !length )
-       JOptionPane.showMessageDialog(null, "invalid ID");
-             
-   if(!ssnDigit || ! ssnlen)
-        JOptionPane.showMessageDialog(null, "invalid ssn");
-   if(!phoneDigit || ! phonelen)
-        JOptionPane.showMessageDialog(null, "invalid phone");
-   
-     jTextField2.setText("");
-            connection.close();
-        }
+            if(!exists)
+             JOptionPane.showMessageDialog(null, "No patient found!");
+            jTextField2.setText("");
+            connection.close(); }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       if(jCheckBox1.isSelected())
-       {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();  
+      jTable1.setModel(new DefaultTableModel());
+      if(jCheckBox1.isSelected())
+      {
+       try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+           Statement statement = connection.createStatement(); 
+           if(jTextField3.getText().length()!=5) 
+             JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+           else 
+           {
+            int check = Integer.parseInt(jTextField3.getText());
             String sql3 = "SELECT COUNT(1) FROM appointment WHERE Doc_ID =" + GUILogin2.id + " AND Pat_ID=" + jTextField3.getText();
             ResultSet result =  statement.executeQuery(sql3);
             result.next();
-           if (result.getInt(1) > 0)//patient is the doctor's patient
-           {
-              String sql = "UPDATE patient SET Diagnosis=" + "'" + jTextField4.getText() +"'"+ "WHERE Patid=" + "'" + jTextField3.getText() +"'";
-	      PreparedStatement statement2 = connection.prepareStatement(sql);
-              statement2.executeUpdate();
-            jTable1.setModel(new DefaultTableModel());
-            String sql2 = "SELECT * FROM patient WHERE Patid = " + jTextField3.getText();
-            ResultSet r = statement.executeQuery(sql2);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
-             colN[0] = "ID";
-             colN[1]= "SSN";
-             colN[2]= "First Name";
-             colN[3]= "Middle Name";
-             colN[4]= "Last Name";
-             colN[5]= "Phone Number";
-             colN[6]= "Date of Birth";
-             colN[7]= "Gender";
-             colN[8]= "Diagnosis";
-
-            t.setColumnIdentifiers(colN);
-            String id, ssn, first, mid, last, phone, dob, gender, diagnosis;
-            boolean flag = false;
-            boolean isDigitId = true;
-            boolean length = true;
-            boolean ssnlen = true;
-            boolean ssnDigit =true;
-            boolean phonelen = true;
-            boolean phoneDigit = true;
-            while(r.next()){
+            if(result.getInt(1) > 0)//patient is the doctor's patient
+            {
+             String sql = "UPDATE patient SET Diagnosis=" + "'" + jTextField4.getText() +"'"+ "WHERE Patid=" + "'" + jTextField3.getText() +"'";
+	     PreparedStatement statement2 = connection.prepareStatement(sql);
+             int upd = statement2.executeUpdate();
+             if (upd != 0)
+             {
+               jTable1.setModel(new DefaultTableModel());
+               String sql2 = "SELECT * FROM patient WHERE Patid = " + jTextField3.getText();
+               ResultSet r = statement.executeQuery(sql2);
+               ResultSetMetaData rm =  r.getMetaData();
+               DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+               int cols = rm.getColumnCount();
+               String [] colN = new String[cols];
+               colN[0] = "ID";
+               colN[1]= "SSN";
+               colN[2]= "First name";
+               colN[3]= "Middle name";
+               colN[4]= "Last name";
+               colN[5]= "Phone number";
+               colN[6]= "Date of birth";
+               colN[7]= "Gender";
+               colN[8]= "Diagnosis";  
+               t.setColumnIdentifiers(colN);
+               String id, ssn, first, mid, last, phone, dob, gender, diagnosis;
+               while(r.next())
+               {
                 id = r.getString(1);
-                
-                if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 ssn = r.getString(2);
-                if(ssn.length() != 10 ){
-                ssnlen = false;
-                }
-                for(int i = 0; i < ssn.length();i++){
-                  if( !(ssn.charAt(i) >=0 && ssn.charAt(i)<=9))
-                      ssnDigit = false;
-                  break;
-                }
-        
                 first = r.getString(3);
                 mid = r.getString(4);
                 last = r.getString(5);
                 phone = r.getString(6);
-                if(phone.length() != 10 ){
-                phonelen = false;
-                }
-                for(int i = 0; i < phone.length();i++){
-                  if( !(phone.charAt(i) >=0 && phone.charAt(i)<=9))
-                      phoneDigit = false;
-                  break;
-                }            
-                 dob = r.getString(7);
+                dob = r.getString(7);
                 gender = r.getString(8);
                 diagnosis =r.getString(9);
-                flag = true;
-                String [] row = {id,ssn,first,mid,last,phone,dob, gender,diagnosis};
+                String [] row = {id,ssn,first,mid,last,phone,dob,gender,diagnosis};
                 t.addRow(row);
-            }
-            
-         
-   if( !isDigitId || !length )
-       JOptionPane.showMessageDialog(null, "invalid ID"); 
-                    
-   if(!ssnDigit || ! ssnlen)
-        JOptionPane.showMessageDialog(null, "invalid ssn");
-          
-   if(!phoneDigit || ! phonelen)
-        JOptionPane.showMessageDialog(null, "invalid phone"); }
-           
- jTextField3.setText("");
- jTextField4.setText("");
-            connection.close();
-        }
+                } 
+                JOptionPane.showMessageDialog(null, "Diagnosis successfully updated!");} 
+                else
+                 JOptionPane.showMessageDialog(null, "Operation is unsuccessful!"); }
+            else
+                 JOptionPane.showMessageDialog(null, "No patient found!"); }
+           jTextField3.setText("");
+           jTextField4.setText("");
+           connection.close();}
+       catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+           jTextField3.setText("");
+        } 
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton6ActionPerformed
     }
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -419,174 +349,102 @@ public class ViewMyPatD extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT Patid, Pssn, Pfirst, Pmiddle, Plast, Patphone, Dob, Gender, Diagnosis FROM patient, appointment WHERE Patid = Pat_ID AND Doc_ID = " + GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-             colN[0] = "ID";
-             colN[1]= "SSN";
-             colN[2]= "First Name";
-             colN[3]= "Middle Name";
-             colN[4]= "Last Name";
-             colN[5]= "Phone Number";
-             colN[6]= "Date of Birth";
-             colN[7]= "Gender";
-             colN[8]= "Diagnosis";
-            
-            
-            
+            colN[0] = "ID";
+            colN[1]= "SSN";
+            colN[2]= "First name";
+            colN[3]= "Middle name";
+            colN[4]= "Last name";
+            colN[5]= "Phone number";
+            colN[6]= "Date of birth";
+            colN[7]= "Gender";
+            colN[8]= "Diagnosis";  
             t.setColumnIdentifiers(colN);
             String id, ssn, first, mid, last, phone, dob, gender, diagnosis;
-            boolean isDigitId = true;
-            boolean length = true;
-            boolean ssnlen = true;
-            boolean ssnDigit =true;
-            boolean phonelen = true;
-            boolean phoneDigit = true;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 ssn = r.getString(2);
-                if(ssn.length() != 10 ){
-                ssnlen = false;
-                }
-                for(int i = 0; i < ssn.length();i++){
-                  if( !(ssn.charAt(i) >=0 && ssn.charAt(i)<=9))
-                      ssnDigit = false;
-                  break;
-                }
-        
                 first = r.getString(3);
                 mid = r.getString(4);
                 last = r.getString(5);
                 phone = r.getString(6);
-                if(phone.length() != 10 ){
-                phonelen = false;
-                }
-                for(int i = 0; i < phone.length();i++){
-                  if( !(phone.charAt(i) >=0 && phone.charAt(i)<=9))
-                      phoneDigit = false;
-                  break;
-                }            
-                 dob = r.getString(7);
+                dob = r.getString(7);
                 gender = r.getString(8);
                 diagnosis =r.getString(9);
+                exists = true;
                 String [] row = {id,ssn,first,mid,last,phone,dob, gender,diagnosis};
                 t.addRow(row);
             }
-                
-   if( !isDigitId || !length )
-       JOptionPane.showMessageDialog(null, "invalid ID"); 
-                    
-   if(!ssnDigit || ! ssnlen)
-        JOptionPane.showMessageDialog(null, "invalid ssn");
-          
-   if(!phoneDigit || ! phonelen)
-        JOptionPane.showMessageDialog(null, "invalid phone");
-   
+            if(!exists)
+              JOptionPane.showMessageDialog(null, "You have no patients!");
             connection.close();
         }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString()); }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       jTable1.setModel(new DefaultTableModel());
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();
-
+      jTable1.setModel(new DefaultTableModel());
+      try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+           Statement statement = connection.createStatement();
+           if(jTextField1.getText().length()!=5) 
+           JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+           else 
+           {
+            int check = Integer.parseInt(jTextField1.getText());
             String sql = "SELECT Patid, Pssn, Pfirst, Pmiddle, Plast, Patphone, Dob, Gender, Diagnosis FROM patient, appointment WHERE Patid = Pat_ID AND Patid = " + jTextField1.getText() +" AND Doc_ID = " + GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-             colN[0] = "ID";
-             colN[1]= "SSN";
-             colN[2]= "First Name";
-             colN[3]= "Middle Name";
-             colN[4]= "Last Name";
-             colN[5]= "Phone Number";
-             colN[6]= "Date of Birth";
-             colN[7]= "Gender";
-             colN[8]= "Diagnosis";
-            
-            
-            
+            colN[0] = "ID";
+            colN[1]= "SSN";
+            colN[2]= "First name";
+            colN[3]= "Middle name";
+            colN[4]= "Last name";
+            colN[5]= "Phone number";
+            colN[6]= "Date of birth";
+            colN[7]= "Gender";
+            colN[8]= "Diagnosis";   
             t.setColumnIdentifiers(colN);
             String id, ssn, first, mid, last, phone, dob, gender, diagnosis;
-            boolean isDigitId = true;
-            boolean length = true;
-            boolean ssnlen = true;
-            boolean ssnDigit =true;
-            boolean phonelen = true;
-            boolean phoneDigit = true;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 ssn = r.getString(2);
-                if(ssn.length() != 10 ){
-                ssnlen = false;
-                }
-                for(int i = 0; i < ssn.length();i++){
-                  if( !(ssn.charAt(i) >=0 && ssn.charAt(i)<=9))
-                      ssnDigit = false;
-                  break;
-                }
-        
                 first = r.getString(3);
                 mid = r.getString(4);
                 last = r.getString(5);
                 phone = r.getString(6);
-                if(phone.length() != 10 ){
-                phonelen = false;
-                }
-                for(int i = 0; i < phone.length();i++){
-                  if( !(phone.charAt(i) >=0 && phone.charAt(i)<=9))
-                      phoneDigit = false;
-                  break;
-                }            
-                 dob = r.getString(7);
+                dob = r.getString(7);
                 gender = r.getString(8);
                 diagnosis =r.getString(9);
+                exists = true;
                 String [] row = {id,ssn,first,mid,last,phone,dob, gender,diagnosis};
                 t.addRow(row);
-            }
-                
-   if( !isDigitId || !length )
-       JOptionPane.showMessageDialog(null, "invalid ID"); 
-                    
-   if(!ssnDigit || ! ssnlen)
-        JOptionPane.showMessageDialog(null, "invalid ssn");
-          
-   if(!phoneDigit || ! phonelen)
-        JOptionPane.showMessageDialog(null, "invalid phone");
-      jTextField1.setText("");
+            }  
+            if(!exists)
+              JOptionPane.showMessageDialog(null, "No patient found!"); }
+            jTextField1.setText("");
             connection.close();
         }
+        catch (NumberFormatException e)
+        {  JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+           jTextField1.setText("");
+        } 
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

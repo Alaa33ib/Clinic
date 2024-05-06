@@ -5,6 +5,8 @@ public class DoctorsApps extends javax.swing.JFrame {
 
     public DoctorsApps() {
         initComponents();
+         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -28,6 +30,7 @@ public class DoctorsApps extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Receptionist View");
+        jLabel1.setToolTipText("");
 
         jLabel3.setText("Please enter the doctor's ID:");
 
@@ -76,24 +79,24 @@ public class DoctorsApps extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton1)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
             .addComponent(jScrollPane4)
         );
         layout.setVerticalGroup(
@@ -121,53 +124,54 @@ public class DoctorsApps extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try{
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
-
-            String sql = "SELECT Apptid, Time, Date, Pfirst, Plast, Dob FROM appointment, patient WHERE Pat_ID = Patid AND Doc_ID=" + jTextField1.getText();
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-
-            String [] colN = new String[cols];
-            colN[0] = "Appointment id";
-            colN[1] = "Appointment time";
-            colN[2] = "Appointment date";
-            colN[3] = "Patient first name";
-            colN[4] = "Patient last name";
-            colN[5] = "date of birth";
-            t.setColumnIdentifiers(colN);
-            String id, time, date, df, dl, b;
-            while(r.next()) {
+            if(jTextField1.getText().length()!=5) 
+                JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+            else 
+            {
+             int check = Integer.parseInt(jTextField1.getText());
+             String sql = "SELECT Apptid, Time, Date, Pfirst, Plast, Dob FROM appointment, patient WHERE Pat_ID = Patid AND Doc_ID=" + jTextField1.getText();
+             ResultSet r = statement.executeQuery(sql);
+             ResultSetMetaData rm =  r.getMetaData();
+             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+             int cols = rm.getColumnCount();
+             String [] colN = new String[cols];
+             colN[0] = "Appointment ID";
+             colN[1] = "Time";
+             colN[2] = "Date";
+             colN[3] = "Patient's first name";
+             colN[4] = "Patient's last name";
+             colN[5] = "Patient's DOB";
+             t.setColumnIdentifiers(colN);
+             String id, time, date, df, dl, b;
+             boolean exists = false;
+             while(r.next()) 
+             {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
                 df = r.getString(4);
                 dl = r.getString(5);
                 b = r.getString(6);
-
+                exists = true;
                 String [] row = {id, time, date, df, dl,b};
                 t.addRow(row);
+             }
+             if(!exists)
+               JOptionPane.showMessageDialog(null, "No appointments found!");
+  
             }
+            jTextField1.setText("");
+             connection.close();
+          }
+          catch (NumberFormatException e)
+          {  JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");   }
+          catch (Exception e)
+        {  JOptionPane.showMessageDialog(null, e.toString());  }
 
-            connection.close();
-    }
-            catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-
-        }
-
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
-        }
-         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

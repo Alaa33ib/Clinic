@@ -5,6 +5,8 @@ public class AppView extends javax.swing.JFrame {
 
     public AppView() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -162,25 +164,27 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            if((jTextField2.getText().length()!=10)||(jTextField2.getText().charAt(4)!='-')||(jTextField2.getText().charAt(7)!='-')) JOptionPane.showMessageDialog(null, "please enter date in this format YYYY-MM-DD" );
+            if((jTextField2.getText().length()!=10)||(jTextField2.getText().charAt(4)!='-')||(jTextField2.getText().charAt(7)!='-')) 
+               JOptionPane.showMessageDialog(null, "Invalid format: please enter date in this format YYYY-MM-DD.");
+            else 
+            {
+              String sql = "SELECT * FROM appointment WHERE Date =" + "'"+jTextField2.getText()+ "'";
+              ResultSet r = statement.executeQuery(sql);
+              ResultSetMetaData rm =  r.getMetaData();
+              DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+              int cols = rm.getColumnCount();
+              String [] colN = new String[cols];
+              colN[0] = "Appointment ID";
+              colN[1] = "Appointment time";
+              colN[2] = "Appointment date";
+              colN[3] = "Patient ID";
+              colN[4] = "Doctor ID";
 
-
-            String sql = "SELECT * FROM appointment WHERE Date =" + "'"+ jTextField2.getText()+ "'";
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-           String [] colN = new String[cols];
-            colN[0] = "Appointment id";
-            colN[1] = "Appointment time";
-            colN[2] = "Appointment date";
-            colN[3] = "Patient's id";
-            colN[4] = "Doctor's id";
-
-            t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
-            boolean exist = false;
-            while(r.next()){
+              t.setColumnIdentifiers(colN);
+              String id, time, date, id2, id3;
+              boolean exist = false;
+              while(r.next())
+              {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
@@ -189,20 +193,19 @@ public class AppView extends javax.swing.JFrame {
                 exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
+             }
+             if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found!");
             }
-            if(!exist)
-                JOptionPane.showMessageDialog(null, "Appointment not found");
-             jTextField2.setText("");
+            jTextField2.setText("");
             connection.close();
-        }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-
-        }
-        catch ( e)
-    {
-       JOptionPane.showMessageDialog(null, "invalid date ");
-    }
+         }
+         catch (java.sql.SQLSyntaxErrorException e)
+         {  JOptionPane.showMessageDialog(null, "Invalid date: please enter digits only.");
+            jTextField2.setText("");
+         }
+         catch (Exception e)
+         {  JOptionPane.showMessageDialog(null, e.toString());  }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -210,8 +213,8 @@ public class AppView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      jTable1.setModel(new DefaultTableModel());  
-        try{
+       jTable1.setModel(new DefaultTableModel());  
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
@@ -222,16 +225,16 @@ public class AppView extends javax.swing.JFrame {
             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
             int cols = rm.getColumnCount();
             String [] colN = new String[cols];
-            colN[0] = "Appointment id";
+            colN[0] = "Appointment ID";
             colN[1] = "Appointment time";
             colN[2] = "Appointment date";
-            colN[3] = "Patient's id";
-            colN[4] = "Doctor's id";
-
+            colN[3] = "Patient ID";
+            colN[4] = "Doctor ID";
             t.setColumnIdentifiers(colN);
             String id, time, date, id2, id3;
             boolean exist = false;
-            while(r.next()){
+            while(r.next())
+            {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
@@ -242,40 +245,39 @@ public class AppView extends javax.swing.JFrame {
                 t.addRow(row);
             }
             if(!exist)
-                JOptionPane.showMessageDialog(null, "Appointment not found");
-
+                JOptionPane.showMessageDialog(null, "No appointment found in system!");
             connection.close();
         }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jTable1.setModel(new DefaultTableModel());
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();
-            if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!=':')) JOptionPane.showMessageDialog(null, "please enter time in this format HH:MM" );
-
-
-            String sql = "SELECT * FROM appointment WHERE Time ="+ "'" + jTextField3.getText() + ":00" + "'";
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
-            colN[0] = "Appointment id";
-            colN[1] = "Appointment time";
-            colN[2] = "Appointment date";
-            colN[3] = "Patient's id";
-            colN[4] = "Doctor's id";
-
-            t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
-            boolean exist = false;
-            while(r.next()){
+             Class.forName("com.mysql.cj.jdbc.Driver");
+             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+             Statement statement = connection.createStatement();
+             if((jTextField3.getText().length()!=5)||(jTextField3.getText().charAt(2)!=':') || !Character.isDigit(jTextField3.getText().charAt(0))|| !Character.isDigit(jTextField3.getText().charAt(1))||! Character.isDigit(jTextField3.getText().charAt(3))|| !Character.isDigit(jTextField3.getText().charAt(4))) 
+                JOptionPane.showMessageDialog(null, "Invalid format: please enter time in this format HH:MM and ensure all characters are digits." );
+             else 
+             {
+               String sql = "SELECT * FROM appointment WHERE Time ="+"'"+  jTextField3.getText() + ":00" +"'";
+               ResultSet r = statement.executeQuery(sql);
+               ResultSetMetaData rm =  r.getMetaData();
+               DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+               int cols = rm.getColumnCount();
+               String [] colN = new String[cols];
+               colN[0] = "Appointment ID";
+               colN[1] = "Appointment time";
+               colN[2] = "Appointment date";
+               colN[3] = "Patient ID";
+               colN[4] = "Doctor ID";
+               t.setColumnIdentifiers(colN);
+               String id, time, date, id2, id3;
+               boolean exist = false;
+               while(r.next())
+               {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
@@ -284,18 +286,15 @@ public class AppView extends javax.swing.JFrame {
                 exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
+              }
+              if(!exist)
+                JOptionPane.showMessageDialog(null, "Appointment not found!");
             }
-            if(!exist)
-                JOptionPane.showMessageDialog(null, "Appointment not found");
-           jTextField3.setText("");
+            jTextField3.setText("");
             connection.close();
-        }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());}
-        catch (MysqlDataTruncation e)
-    {
-       JOptionPane.showMessageDialog(null, "invalid time");
-    }
+           } 
+           catch (Exception e)
+           {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -313,26 +312,28 @@ public class AppView extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-            if(jTextField1.getText().length()!=5) JOptionPane.showMessageDialog(null, "invalid id");
-            int check = Integer.parseInt(jTextField1.getText());
-                
+            if(jTextField1.getText().length()!=5) 
+               JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+            else 
+            {
+             int check = Integer.parseInt(jTextField1.getText());  
+             String sql = "SELECT * FROM appointment WHERE Apptid =" +jTextField1.getText();
+             ResultSet r = statement.executeQuery(sql);
+             ResultSetMetaData rm =  r.getMetaData();
+             DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
+             int cols = rm.getColumnCount();
+             String [] colN = new String[cols];
+             colN[0] = "Appointment ID";
+             colN[1] = "Appointment time";
+             colN[2] = "Appointment date";
+             colN[3] = "Patient ID";
+             colN[4] = "Doctor ID";
 
-            String sql = "SELECT * FROM appointment WHERE Apptid =" +jTextField1.getText();
-            ResultSet r = statement.executeQuery(sql);
-            ResultSetMetaData rm =  r.getMetaData();
-            DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
-            int cols = rm.getColumnCount();
-            String [] colN = new String[cols];
-            colN[0] = "Appointment id";
-            colN[1] = "Appointment time";
-            colN[2] = "Appointment date";
-            colN[3] = "Patient's id";
-            colN[4] = "Doctor's id";
-
-            t.setColumnIdentifiers(colN);
-            String id, time, date, id2, id3;
-            boolean exist = false;
-            while(r.next()){
+             t.setColumnIdentifiers(colN);
+             String id, time, date, id2, id3;
+             boolean exist = false;
+             while(r.next())
+             {
                 id = r.getString(1);
                 time = r.getString(2);
                 date = r.getString(3);
@@ -341,22 +342,26 @@ public class AppView extends javax.swing.JFrame {
                 exist = true;
                 String [] row = {id, time, date, id2, id3};
                 t.addRow(row);
-            }
+             }
             if(!exist)
-                JOptionPane.showMessageDialog(null, "Appointment not found");
-            jTextField1.setText("");
-            connection.close();
-        }
-        catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
-        catch (NumberFormatException e)
-        {  JOptionPane.showMessageDialog(null, "invalid id, please enter a 5 digit number");
-
-        }
+                JOptionPane.showMessageDialog(null, "Appointment not found!");
+            }
+             jTextField1.setText("");
+             connection.close();
+           } 
+           catch (NumberFormatException e)   
+           {
+             JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+             jTextField1.setText("");
+           }
+  
+          catch (Exception e)
+          {  
+              JOptionPane.showMessageDialog(null, e.toString());
+          }
     }//GEN-LAST:event_jButton3ActionPerformed
 
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -11,6 +11,8 @@ public class ViewMyPresD extends javax.swing.JFrame {
 
     public ViewMyPresD() {
        initComponents();
+         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -146,7 +148,7 @@ public class ViewMyPresD extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82)
+                                .addGap(81, 81, 81)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
@@ -157,13 +159,16 @@ public class ViewMyPresD extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1)))
                 .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -184,8 +189,7 @@ public class ViewMyPresD extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(219, 219, 219)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -193,9 +197,11 @@ public class ViewMyPresD extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(132, 132, 132)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(126, 126, 126)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -206,10 +212,10 @@ public class ViewMyPresD extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton7))
+                    .addComponent(jButton7)
+                    .addComponent(jButton3))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -223,25 +229,27 @@ public class ViewMyPresD extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4))
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(66, 66, 66)
+                    .addGap(111, 111, 111)
                     .addComponent(jButton6)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
+                    .addContainerGap(37, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-            Statement statement = connection.createStatement();
-            
+     jTable1.setModel(new DefaultTableModel());
+     try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+           Statement statement = connection.createStatement();
+           if(jTextField1.getText().length()!=5) 
+               JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+           else 
+           {
+            int check = Integer.parseInt(jTextField1.getText());  
             String sql = "SELECT Appt_id, Drug_id, Dosage, Drugname, D.Usage FROM prescribed_in, drug AS D, appointment WHERE Appt_id = Apptid AND Drug_id = Drugid AND Pat_ID=" +jTextField1.getText() + " AND Doc_ID = " + GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -251,45 +259,31 @@ public class ViewMyPresD extends javax.swing.JFrame {
             colN[0] = "Appointment ID";
             colN[1]= "Drug ID";
             colN[2]= "Dosage";
-            colN[3]= "Drug Name";
-            colN[4]= "Drug Usage";           
-
+            colN[3]= "Drug name";
+            colN[4]= "Drug usage";           
             t.setColumnIdentifiers(colN);
             String id, id2, dos, drugn, drugu;
-            boolean length = true ;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
+            boolean exists = false;
             while(r.next()){
                 id = r.getString(1);
-                 if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 id2 = r.getString(2);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
                 dos = r.getString(3) + " mg";
                 drugn = r.getString(4);
                 drugu = r.getString(5);
+                exists = true;
                 String [] row = {id, id2, dos, drugn, drugu};
                 t.addRow(row);
-            }
-            if( !isDigitId || !length || !isDigitId2 ||!length2 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
-   jTextField1.setText("");
+            } if(!exists)
+               JOptionPane.showMessageDialog(null,"No prescriptions found!");  }
+            jTextField1.setText("");
             connection.close();
-        }
+            }
+            catch (NumberFormatException e)   
+           {
+             JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+             jTextField1.setText("");
+           }
+  
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -305,7 +299,11 @@ public class ViewMyPresD extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
+            if(jTextField2.getText().length()!=5) 
+               JOptionPane.showMessageDialog(null, "Invalid ID: must be 5 characters long!");
+           else 
+           {
+            int check = Integer.parseInt(jTextField2.getText());  
             String sql = "SELECT Appt_id, Drug_id, Dosage, Drugname, D.Usage FROM prescribed_in, drug AS D, appointment WHERE Appt_id = Apptid AND Drug_id = Drugid AND Doc_ID = " + GUILogin2.id +" AND Apptid=" + jTextField2.getText();
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -315,45 +313,32 @@ public class ViewMyPresD extends javax.swing.JFrame {
             colN[0] = "Appointment ID";
             colN[1]= "Drug ID";
             colN[2]= "Dosage";
-            colN[3]= "Drug Name";
-            colN[4]= "Drug Usage";           
+            colN[3]= "Drug name";
+            colN[4]= "Drug usage";           
 
             t.setColumnIdentifiers(colN);
             String id, id2, dos, drugn, drugu;
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
+            boolean exists= false;
             while(r.next()){
-                 id = r.getString(1);
-                  if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
+                id = r.getString(1);
                 id2 = r.getString(2);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
                 dos = r.getString(3) + " mg";
                 drugn = r.getString(4);
                 drugu = r.getString(5);
+                exists = true;
                 String [] row = {id, id2, dos, drugn, drugu};
                 t.addRow(row);
-            }
-             if( !isDigitId || !length || !isDigitId2 ||!length2 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
+            } 
+            if(!exists)
+               JOptionPane.showMessageDialog(null,"No prescriptions found!"); }
             jTextField2.setText("");
             connection.close();
         }
+           catch (NumberFormatException e)   
+           {
+             JOptionPane.showMessageDialog(null, "Invalid ID: please enter digits only.");
+             jTextField2.setText("");
+           }
         catch (Exception e)
         {  JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -366,72 +351,69 @@ public class ViewMyPresD extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if(jCheckBox1.isSelected())
         {
-            try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
-                Statement statement = connection.createStatement();
+         try{
+             Class.forName("com.mysql.cj.jdbc.Driver");
+             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
+             Statement statement = connection.createStatement();
+             if(jTextField3.getText().length()!=5 || jTextField5.getText().length()!=5) 
+               JOptionPane.showMessageDialog(null, "Invalid ID(s): must be 5 characters long!");
+             else 
+             {
+                int check = Integer.parseInt(jTextField3.getText());
+                check = Integer.parseInt(jTextField5.getText());
                 String sql3 = "SELECT COUNT(1) FROM appointment WHERE Doc_ID =" + GUILogin2.id + " AND Apptid=" + jTextField5.getText();
                 ResultSet result =  statement.executeQuery(sql3);
                 result.next();
-                if (result.getInt(1) > 0)//appointment is the doctor's appointment
+                if(result.getInt(1) > 0)//appointment is the doctor's appointment
                 {
-                    String sql = "UPDATE prescribed_in SET Dosage=" + jTextField4.getText() + " WHERE Appt_id=" + jTextField5.getText() + " AND Drug_id=" + jTextField3.getText();
-                    PreparedStatement statement2 = connection.prepareStatement(sql);
-                    statement2.executeUpdate();
+                  String sql = "UPDATE prescribed_in SET Dosage=" + jTextField4.getText() + " WHERE Appt_id=" + jTextField5.getText() + " AND Drug_id=" + jTextField3.getText();
+                  PreparedStatement statement2 = connection.prepareStatement(sql);
+                  int upd = statement2.executeUpdate();
+                  if (upd != 0)
+                  {                   
                     jTable1.setModel(new DefaultTableModel());
                     String sql2 = "SELECT Appt_id, Drug_id, Dosage, Drugname, D.Usage FROM prescribed_in, drug AS D, appointment WHERE Appt_id = Apptid AND Drug_id = Drugid AND Doc_ID = " + GUILogin2.id + " AND Appt_id=" + jTextField5.getText() + " AND Drug_id=" + jTextField3.getText();
                     ResultSet r = statement.executeQuery(sql2);
                     ResultSetMetaData rm =  r.getMetaData();
                     DefaultTableModel t = (DefaultTableModel)jTable1.getModel();
                     int cols = rm.getColumnCount();
-  String [] colN = new String[cols];
-            colN[0] = "Appointment ID";
-            colN[1]= "Drug ID";
-            colN[2]= "Dosage";
-            colN[3]= "Drug Name";
-            colN[4]= "Drug Usage";           
-
-            t.setColumnIdentifiers(colN);
-            String id, id2, dos, drugn, drugu;
-            boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
-            while(r.next()){
-                id = r.getString(1);
-                 if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
-                id2 = r.getString(2);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
-                dos = r.getString(3) + " mg";
-                drugn = r.getString(4);
-                drugu = r.getString(5);
-                String [] row = {id, id2, dos, drugn, drugu};
-                t.addRow(row);
-            } if( !isDigitId || !length || !isDigitId2 ||!length2 )
-       JOptionPane.showMessageDialog(null, "invalid ID"); }
-      
-                    jTextField3.setText("");
-                    jTextField4.setText("");
-                    jTextField5.setText("");      
-                    connection.close();
-                }
-                catch (Exception e)
-                {  JOptionPane.showMessageDialog(null, e.toString());
-                }
+                    String [] colN = new String[cols];
+                    colN[0] = "Appointment ID";
+                    colN[1]= "Drug ID";
+                    colN[2]= "Dosage";
+                    colN[3]= "Drug name";
+                    colN[4]= "Drug usage";           
+                    t.setColumnIdentifiers(colN);
+                    String id, id2, dos, drugn, drugu;
+                    while(r.next())
+                    {
+                     id = r.getString(1);
+                    id2 = r.getString(2);
+                    dos = r.getString(3) + " mg";
+                    drugn = r.getString(4);
+                    drugu = r.getString(5);
+                    String [] row = {id, id2, dos, drugn, drugu};
+                    t.addRow(row); } 
+                   JOptionPane.showMessageDialog(null, "Dosage successfully updated!");} 
+                   else
+                    JOptionPane.showMessageDialog(null, "Operation is unsuccessful!"); }
+                   else
+                    JOptionPane.showMessageDialog(null, "No prescription found!");}
+                   jTextField3.setText("");
+                   jTextField4.setText("");
+                   jTextField5.setText("");      
+                   connection.close(); }
+              catch (NumberFormatException e)
+              {  JOptionPane.showMessageDialog(null, "Invalid ID(s): please enter digits only.");
+                 jTextField3.setText("");
+                 jTextField5.setText("");      
+              }
+               catch (java.sql.SQLSyntaxErrorException e)
+              {  JOptionPane.showMessageDialog(null, "Invalid dosage: please enter digits only.");
+                 jTextField4.setText("");    
+              }
+              catch (Exception e)
+              {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton6ActionPerformed
     }
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -439,12 +421,11 @@ public class ViewMyPresD extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTable1.setModel(new DefaultTableModel());
-        try{
+       jTable1.setModel(new DefaultTableModel());
+       try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic management system","root","");
             Statement statement = connection.createStatement();
-
             String sql = "SELECT Appt_id, Drug_id, Dosage, Drugname, D.Usage FROM prescribed_in, drug AS D, appointment WHERE Appt_id = Apptid AND Drug_id = Drugid AND Doc_ID = " + GUILogin2.id;
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rm =  r.getMetaData();
@@ -454,47 +435,28 @@ public class ViewMyPresD extends javax.swing.JFrame {
             colN[0] = "Appointment ID";
             colN[1]= "Drug ID";
             colN[2]= "Dosage";
-            colN[3]= "Drug Name";
-            colN[4]= "Drug Usage";           
-
+            colN[3]= "Drug name";
+            colN[4]= "Drug usage";           
             t.setColumnIdentifiers(colN);
             String id, id2, dos, drugn, drugu;
-             boolean length = true;
-            boolean isDigitId = true;
-            boolean length2 = true;
-            boolean isDigitId2 = true;
-            while(r.next()){
+            boolean exists = false;
+            while(r.next())
+            {
                 id = r.getString(1);
-                if(id.length() != 5 ){
-                length = false;
-                }
-                for(int i = 0; i < id.length();i++){
-                  if( !(id.charAt(i) >=0 && id.charAt(i)<=9))
-                      isDigitId = false;
-                  break;
-                }
                 id2 = r.getString(2);
-                if(id2.length() != 5 ){
-                length2 = false;
-                }
-                for(int i = 0; i < id2.length();i++){
-                  if( !(id2.charAt(i) >=0 && id2.charAt(i)<=9))
-                      isDigitId2 = false;
-                  break;
-                }
                 dos = r.getString(3) + " mg";
                 drugn = r.getString(4);
                 drugu = r.getString(5);
+                exists = true;
                 String [] row = {id, id2, dos, drugn, drugu};
                 t.addRow(row);
             }
-         if( !isDigitId || !length || !isDigitId2 ||!length2 )
-       JOptionPane.showMessageDialog(null, "invalid ID");
+            if(!exists)
+               JOptionPane.showMessageDialog(null,"No prescriptions found!"); 
             connection.close();
         }
         catch (Exception e)
-        {  JOptionPane.showMessageDialog(null, e.toString());
-        }
+        {  JOptionPane.showMessageDialog(null, e.toString());}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -534,4 +496,3 @@ public class ViewMyPresD extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
-
